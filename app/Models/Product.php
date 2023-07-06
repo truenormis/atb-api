@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $guarded = false;
+    protected $guarded = true;
     protected $appends = ['latest_price','latest_discount_price'];
 
 
