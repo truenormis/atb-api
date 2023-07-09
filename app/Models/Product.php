@@ -2,34 +2,41 @@
 
 namespace App\Models;
 
-use App\Console\Commands\Update\OptionsCommand;
-use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
     use HasFactory;
+
     protected $guarded = false;
-    protected $appends = ['latest_price','latest_discount_price'];
+    protected $appends = ['latest_price', 'latest_discount_price'];
 
 
-    public function subcategory(){
+    public function subcategory(): BelongsTo
+    {
         return $this->belongsTo(Subcategory::class);
     }
-    public function category(){
+
+    public function category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public  function image(){
+    public function image(): HasOne
+    {
         return $this->hasOne(Image::class);
     }
 
-    public  function prices(){
+    public function prices(): HasMany
+    {
         return $this->hasMany(Price::class);
     }
 
-    public function options()
+    public function options(): HasMany
     {
         return $this->hasMany(Option::class);
     }
@@ -38,9 +45,11 @@ class Product extends Model
     {
         return $this->prices()->latest()->first()->price ?? null;
     }
+
     public function getLatestDiscountPriceAttribute()
     {
         return $this->prices()->latest()->first()->discount_price ?? null;
     }
+
 
 }
