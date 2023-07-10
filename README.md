@@ -42,7 +42,7 @@ php artisan products:update {--price}
 
 #### Get products
 
-```http
+```
   GET /api/v1/products
 ```
 
@@ -54,13 +54,13 @@ php artisan products:update {--price}
 
 #### Get categories
 
-```http
+```
   GET /api/v1/categories
 ```
 
 #### Get Subcategories by category id
 
-```http
+```
   GET /api/v1/categories/{category}
 ```
 
