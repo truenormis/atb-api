@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('categories:save')->everyFiveMinutes();
+        $schedule->command('products:full')->dailyAt('01:00');
     }
 
     /**
